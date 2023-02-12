@@ -8,7 +8,7 @@ import Divider from "@mui/material/Divider";
 export default function Password() {
   return (
     <>
-      <Grid container spacing={2} sx={{ mt: "20" }}>
+      <Grid container spacing={2} xs={{ mt: "10" }}>
         <Grid item xs={12}>
           <Card>
             <CardContent>

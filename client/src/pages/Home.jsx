@@ -20,7 +20,7 @@ export default function Home() {
         <h1>Home</h1>
        
 <button>
-  <Link to="login-form" className="btn" >Login For Registration</Link>
+  <Link to="registration" className="btn" >Login For Registration</Link>
 </button>
         
 

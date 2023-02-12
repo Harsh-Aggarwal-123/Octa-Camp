@@ -117,15 +117,19 @@ export default function StickyHeadTable() {
     }
   };
 
-  const editData = (id, Name, Number, Email, Age, Gender, Address, Symptoms) => {
+  const editData = (id, FirstName, LastName, ContactNumber, Email, Age, Gender, House, City, State, PinCode, Symptoms) => {
     const data = {
         id: id,
-        Name: Name,
-        Number: Number,
+        FirstName: FirstName,
+        LastName: LastName,
+        ContactNumber: ContactNumber,
         Email: Email,
         Age: Age,
         Gender: Gender,
-        Address: Address,
+        House: House,
+        City: City,
+        State: State,
+        PinCode: PinCode,
         Symptoms: Symptoms,
     };
     setFormid(data);
@@ -157,7 +161,7 @@ export default function StickyHeadTable() {
       </Modal>
     </div>
        {rows.length > 0 && (
-                <Paper sx={{ width: "100%", overflow: "hidden" }}>
+                <Paper sx={{ width: "25%", overflow: "hidden" }}>
                 <Typography
                   gutterBottom
                   variant="h5"
@@ -176,7 +180,7 @@ export default function StickyHeadTable() {
                         options={rows}
                         sx={{ width: 300 }}
                         onChange={(e, v) => filterData(v)}
-                        getOptionLabel={(rows) => rows.Name || ""}
+                        getOptionLabel={(rows) => rows.FirstName || ""}
                         renderInput={(params) => (
                           <TextField {...params} size="small" label="Search Patients" />
                         )}

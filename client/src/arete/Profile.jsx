@@ -12,7 +12,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 export default function Profile() {
   return (
     <>
-      <Grid container spacing={2} sx={{ mt: "200" }}>
+      <Grid container spacing={2} sx={{ mt: "20" }}>
         <Grid item md={4}>
           <Grid container spacing={2} sx={{ mt: "20" }}>
             <Grid item md={12}>

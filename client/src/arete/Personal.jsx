@@ -30,7 +30,7 @@ export default function Personal() {
   return (
     <>
       <Grid container spacing={2} sx={{ mt: "200" }}>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <Grid container spacing={2} sx={{ mt: "20" }}>
             <Grid item xs={12}>
               <Card>
@@ -93,7 +93,7 @@ export default function Personal() {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <Grid container spacing={2} sx={{ mt: "200" }}>
             <Grid item xs={12}>
               <Card>

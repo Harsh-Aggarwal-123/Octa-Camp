@@ -1,3 +1,13 @@
+//import React from "react";
+//import Sidenav from "../components/Sidenav";
+import Navbar from "../components/Navbar";
+//import Box from "@mui/material/Box";
+import { Link, Route, Routes } from "react-router-dom";
+import PatientRegistration from "../components/PatientRegistration";
+import LoginForm from "../components/LoginForm";
+import "../style.css"
+import Bottomnav from "../components/Bottomnav";
+
 import { Button, Grid, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
@@ -8,7 +18,7 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Swal from "sweetalert2";
 import InputAdornment from "@mui/material";
-import { db } from "../../firebase-config";
+import { db } from "../firebase-config";
 import {
   collection,
   getDocs,
@@ -16,11 +26,10 @@ import {
   updateDoc,
   deleteDoc,
   doc,
-  get,
 } from "firebase/firestore";
-import { useAppStore } from "../../appStore";
+import { useAppStore } from "../appStore";
 
-export default function EditForm({ fid, closeEvent }) {
+export default function Registration({ closeEvent }) {
   const [FirstName, setFirstName] = useState("");
   const [LastName, setLastName] = useState("");
   const [ContactNumber, setContactNumber] = useState("");
@@ -32,24 +41,9 @@ export default function EditForm({ fid, closeEvent }) {
   const [State, setState] = useState("");
   const [PinCode, setPinCode] = useState("");
   const [Symptoms, setSymptoms] = useState("");
-  const empCollectionRef = collection(db, "patients");
+  //const [rows, setRows] = useState([]);
   const setRows = useAppStore((state) => state.setRows);
-
-  useEffect(() => {
-    console.log("FID: " + fid.id);
-    setFirstName(fid.FirstName);
-    setLastName(fid.LastName);
-    setContactNumber(fid.ContactNumber);
-    setEmail(fid.Email);
-    setAge(fid.Age);
-    setGender(fid.Gender);
-    setHouse(fid.House);
-    setCity(fid.City);
-    setState(fid.State);
-    setPinCode(fid.PinCode);
-    setSymptoms(fid.Symptoms);
-  }, []);
-
+  const empCollectionRef = collection(db, "patients");
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value);
   };
@@ -85,8 +79,7 @@ export default function EditForm({ fid, closeEvent }) {
   };
 
   const createUser = async () => {
-    const userDoc = doc(db, "patients", fid.id);
-    const newFields = {
+    await addDoc(empCollectionRef, {
       FirstName: FirstName,
       LastName: LastName,
       ContactNumber: parseInt(ContactNumber),
@@ -98,11 +91,10 @@ export default function EditForm({ fid, closeEvent }) {
       State: State,
       PinCode: parseInt(PinCode),
       Symptoms: Symptoms,
-    }
-    await updateDoc(userDoc, newFields);
+    });
     getUsers();
     closeEvent();
-    Swal.fire("Submitted!", "Your file has been updated", "success");
+    Swal.fire("Submitted!", "Your file has been submitted", "success");
   };
   useEffect(() => {
     getUsers();
@@ -123,23 +115,25 @@ export default function EditForm({ fid, closeEvent }) {
   ];
   return (
     <>
-      <Box sx={{ m: 0.5 }}/>
+      
+      <Box sx={{ m: 0.5 }} paddingTop={1}/>
       <Typography variant="h5" align="center">
-        Edit Patient
+        Add Patient
       </Typography>
       <IconButton
-        style={{ position: "absolute", top: "0", right: "0" }}
+        style={{ position: "fixed", top: "0", right: "0"}}
         onClick={closeEvent}
       >
         <CloseIcon />
       </IconButton>
-      <Box height={20} marginTop={-5} />
+      <Box height={5} marginTop={-5} marginBottom={5} />
       
-      <Grid container spacing={2} marginTop={1}>
+      <Grid container spacing={2} marginTop={5} paddingLeft={2} paddingRight={2} paddingBottom={10}>
         <Grid item xs={12}>
           <TextField
             id="outlined-basic"
             label="First Name"
+            paddingLeft= "10px"
             variant="outlined"
             size="small"
             onChange={handleFirstNameChange}
@@ -180,7 +174,7 @@ export default function EditForm({ fid, closeEvent }) {
             sx={{ minWidth: "100%" }}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <TextField
             id="outlined-basic"
             label="Age"
@@ -192,7 +186,7 @@ export default function EditForm({ fid, closeEvent }) {
             sx={{ minWidth: "100%" }}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <TextField
             id="outlined-basic"
             label="Gender"
@@ -222,7 +216,7 @@ export default function EditForm({ fid, closeEvent }) {
             sx={{ minWidth: "100%" }}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <TextField
             id="outlined-basic"
             label="City"
@@ -233,7 +227,7 @@ export default function EditForm({ fid, closeEvent }) {
             sx={{ minWidth: "100%" }}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <TextField
             id="outlined-basic"
             label="State"
@@ -275,6 +269,7 @@ export default function EditForm({ fid, closeEvent }) {
         </Grid>
       </Grid>
       <Box sx={{ m: 4 }} />
+      <Bottomnav />
     </>
   );
 }

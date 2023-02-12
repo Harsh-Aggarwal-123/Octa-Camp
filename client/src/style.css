@@ -92,9 +92,9 @@ label{
    
    .btn{
        margin: 10px;
-       padding: 10px 20px;
+       padding: 1px 10px;
        border-radius: 10px;
-       background-color: pink;
+       background-color: rgb(126, 119, 231);
        border: transparent;
        letter-spacing: 2px;
        text-transform: uppercase;

@@ -89,7 +89,7 @@ const PatientRegistration = () => {
         margin: "auto",
         width: "10%",
         height: "auto",
-        backgroundColor: "blueviolet",
+        backgroundColor: "blue",
         border: "transparent",
         borderRadius: "10px",
         marginTop: "12rem",

@@ -32,7 +32,9 @@ export default function Bottomnav() {
       <BottomNavigationAction label="Home" icon={<HomeIcon />} onClick={()=>{navigate("/")}}>
         </BottomNavigationAction>
       <BottomNavigationAction label="Patients" icon={<PersonAddIcon />} onClick={()=>{navigate("/patients")}}/>
-      <BottomNavigationAction label="Arete" icon={<AccountCircleIcon />} onClick={()=>{navigate("/arete")}} />
+      <BottomNavigationAction label="Camp" icon={<AccountCircleIcon />} onClick={()=>{navigate("/camp")}} />
+      <BottomNavigationAction label="Registration" icon={<AccountCircleIcon />} onClick={()=>{navigate("/registration")}} />
+      <BottomNavigationAction label="Arete" icon={<AccountCircleIcon />} onClick={()=>{navigate("/arete")}} />*/
     </BottomNavigation>
   </Paper>
   );

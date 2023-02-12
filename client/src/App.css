@@ -37,11 +37,14 @@
   }
 }
 
-@media (max-width: 300px) {
+@media (max-width: 30px) {
   .main-MuiBox-root {
 
-    min-width: 300px;
+    min-width: 360px;
 
 
+  }
+  .main-MuiBox-root.css-zxdg2z {
+    min-width: 360px;
   }
 }

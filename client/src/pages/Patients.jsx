@@ -8,16 +8,18 @@ import Bottomnav from "../components/Bottomnav";
 export default function Patients() {
   return (
     <>
-      <div className="bgcolor">
-        <Box height={70} />
+      
+      
         <Box sx={{ display: "flex" }}>
-          
+        
+            
+        <Bottomnav />
+        
           <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-            <PatientList />
-            <Bottomnav />
+          <PatientList />
           </Box>
         </Box>
-      </div>
+      
 
     </>
   );
