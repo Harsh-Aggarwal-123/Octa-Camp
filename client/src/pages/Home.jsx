@@ -7,6 +7,8 @@ import PatientRegistration from "../components/PatientRegistration";
 import LoginForm from "../components/LoginForm";
 import "../style.css"
 import Bottomnav from "../components/Bottomnav";
+import Registration1 from "../components/Registration1";
+import "../components/Registration1.css"
 
 export default function Home() {
   return (
@@ -17,12 +19,10 @@ export default function Home() {
 
         
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <h1>Home</h1>
-       
-<button>
-  <Link to="registration" className="btn" >Login For Registration</Link>
-</button>
         
+
+        <Registration1 />
+       
 
         </Box>
       </Box>

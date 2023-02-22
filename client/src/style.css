@@ -87,14 +87,14 @@ label{
    }
    
    button:hover{
-       background-color: rgb(116, 62, 167);
+       background-color: rgb(87, 84, 90);
    }
    
    .btn{
        margin: 10px;
        padding: 1px 10px;
        border-radius: 10px;
-       background-color: rgb(126, 119, 231);
+       background-color: rgb(78, 68, 216);
        border: transparent;
        letter-spacing: 2px;
        text-transform: uppercase;
@@ -105,13 +105,65 @@ label{
    }
    
    .btn:hover{
-       background-color: rgb(69, 62, 167);
+       background-color: rgb(15, 15, 17);
+   }
+
+   /* .form-body{
+   
+    border: 1px solid green;
+    height:500px;
+    width: 60%;
+    margin: auto;
+} */
+
+@media screen and (min-width:240px) and (max-width:819px) {
+    .form-body{
+        /* margin-left: 0px;
+        margin-right: 500px; */
+        border: 1px solid transparent;
+        width: 80vw;
+        display: flex;
+        justify-content:center;
+        flex-direction: column;
+        position:relative;
+        left: -5rem;
+        
+       
+
+        
+        
+    }
+
+    input{
+        /* width: 100vw; */
+        /* padding-right: 10em; */
+        width: 100%;
+       
+    }
+
+    .inp{
+        margin-top: 20px;
+    }
+
+
+    /* .main{
+
+        border: 1px solid red;
+        width: 100%;
+        left: 1px;
+    } */
+    
    }
    
    
    
    
-   
+   .uhid{
+    margin-left: 50px;
+   }
+   .state{
+    margin-left: 90px;
+   }
    
    
    

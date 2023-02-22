@@ -14,6 +14,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
+import Bottomnav from "../../components/Bottomnav";
 import { db } from "../../firebase-config";
 import {
   collection,
@@ -117,11 +118,12 @@ export default function StickyHeadTable() {
     }
   };
 
-  const editData = (id, FirstName, LastName, ContactNumber, Email, Age, Gender, House, City, State, PinCode, Symptoms) => {
+  const editData = (id, FirstName, LastName, Uhid, ContactNumber, Email, Age, Gender, House, City, State, PinCode) => {
     const data = {
         id: id,
         FirstName: FirstName,
         LastName: LastName,
+        Uhid: Uhid,
         ContactNumber: ContactNumber,
         Email: Email,
         Age: Age,
@@ -130,7 +132,6 @@ export default function StickyHeadTable() {
         City: City,
         State: State,
         PinCode: PinCode,
-        Symptoms: Symptoms,
     };
     setFormid(data);
     handleEditOpen();
@@ -161,14 +162,14 @@ export default function StickyHeadTable() {
       </Modal>
     </div>
        {rows.length > 0 && (
-                <Paper sx={{ width: "25%", overflow: "hidden" }}>
+                <Paper sx={{ width: "23.7%", overflow: "hidden" }}>
                 <Typography
                   gutterBottom
                   variant="h5"
                   component="div"
                   sx={{ padding: "20px" }}
                 >
-                  Patients List
+                  Employee List
                 </Typography>
                 <Divider />
                 
@@ -180,9 +181,9 @@ export default function StickyHeadTable() {
                         options={rows}
                         sx={{ width: 300 }}
                         onChange={(e, v) => filterData(v)}
-                        getOptionLabel={(rows) => rows.FirstName || ""}
+                        getOptionLabel={(rows) => rows.Uhid || ""}
                         renderInput={(params) => (
-                          <TextField {...params} size="small" label="Search Patients" />
+                          <TextField {...params} size="small" label="Search Employee" />
                         )}
                       />
                       <Typography
@@ -205,6 +206,9 @@ export default function StickyHeadTable() {
                           </TableCell>
                           <TableCell align="left" style={{ minWidth: "100px" }}>
                               LastName
+                          </TableCell>
+                          <TableCell align="left" style={{ minWidth: "100px" }}>
+                              UHID
                           </TableCell>
                           <TableCell align="left" style={{ minWidth: "100px" }}>
                               ContactNumber
@@ -231,9 +235,6 @@ export default function StickyHeadTable() {
                               Pin Code
                           </TableCell>
                           <TableCell align="left" style={{ minWidth: "100px" }}>
-                              Symptoms
-                          </TableCell>
-                          <TableCell align="left" style={{ minWidth: "100px" }}>
                               Action
                           </TableCell>
                       </TableRow>
@@ -249,6 +250,9 @@ export default function StickyHeadTable() {
                                   </TableCell>
                                   <TableCell key={row.id} align="left">
                                     {row.LastName}
+                                  </TableCell>
+                                  <TableCell key={row.id} align="left">
+                                    {row.Uhid}
                                   </TableCell>
                                   <TableCell key={row.id} align="left">
                                     {row.ContactNumber}
@@ -274,9 +278,6 @@ export default function StickyHeadTable() {
                                   <TableCell key={row.id} align="left">
                                     {row.PinCode}
                                   </TableCell>
-                                  <TableCell key={row.id} align="left">
-                                    {row.Symptoms}
-                                  </TableCell>
                                   <TableCell align="left">
                                     <Stack spacing={2} direction="row">
                                       <EditIcon
@@ -287,7 +288,7 @@ export default function StickyHeadTable() {
                                         }}
                                         className="cursor-pointer"
                                         onClick={() => {
-                                            editData(row.id, row.Name, row.Number, row.Email, row.Age, row.Gender, row.Address, row.Symptoms);
+                                            editData(row.id, row.FirstName,row.LastName, row.Uhid, row.ContactNumber, row.Email, row.Age, row.Gender,row.House,row.City,row.State, row.PinCode);
                                         }}
                                       />
                                       <DeleteIcon

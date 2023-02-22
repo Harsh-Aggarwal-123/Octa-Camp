@@ -23,6 +23,7 @@ import { useAppStore } from "../../appStore";
 export default function EditForm({ fid, closeEvent }) {
   const [FirstName, setFirstName] = useState("");
   const [LastName, setLastName] = useState("");
+  const [Uhid, setUhid] = useState("");
   const [ContactNumber, setContactNumber] = useState("");
   const [Email, setEmail] = useState("");
   const [Age, setAge] = useState("");
@@ -31,7 +32,6 @@ export default function EditForm({ fid, closeEvent }) {
   const [City, setCity] = useState("");
   const [State, setState] = useState("");
   const [PinCode, setPinCode] = useState("");
-  const [Symptoms, setSymptoms] = useState("");
   const empCollectionRef = collection(db, "patients");
   const setRows = useAppStore((state) => state.setRows);
 
@@ -39,6 +39,7 @@ export default function EditForm({ fid, closeEvent }) {
     console.log("FID: " + fid.id);
     setFirstName(fid.FirstName);
     setLastName(fid.LastName);
+    setUhid(fid.Uhid);
     setContactNumber(fid.ContactNumber);
     setEmail(fid.Email);
     setAge(fid.Age);
@@ -47,7 +48,6 @@ export default function EditForm({ fid, closeEvent }) {
     setCity(fid.City);
     setState(fid.State);
     setPinCode(fid.PinCode);
-    setSymptoms(fid.Symptoms);
   }, []);
 
   const handleFirstNameChange = (event) => {
@@ -55,6 +55,9 @@ export default function EditForm({ fid, closeEvent }) {
   };
   const handleLastNameChange = (event) => {
     setLastName(event.target.value);
+  };
+  const handleUhidChange = (event) => {
+    setUhid(event.target.value);
   };
   const handleContactNumberChange = (event) => {
     setContactNumber(event.target.value);
@@ -80,15 +83,14 @@ export default function EditForm({ fid, closeEvent }) {
   const handlePinCodeChange = (event) => {
     setPinCode(event.target.value);
   };
-  const handleSymptomsChange = (event) => {
-    setSymptoms(event.target.value);
-  };
+  
 
   const createUser = async () => {
     const userDoc = doc(db, "patients", fid.id);
     const newFields = {
       FirstName: FirstName,
       LastName: LastName,
+      Uhid: Uhid,
       ContactNumber: parseInt(ContactNumber),
       Email: Email,
       Age: parseInt(Age),
@@ -97,7 +99,6 @@ export default function EditForm({ fid, closeEvent }) {
       City: City,
       State: State,
       PinCode: parseInt(PinCode),
-      Symptoms: Symptoms,
     }
     await updateDoc(userDoc, newFields);
     getUsers();
@@ -119,6 +120,10 @@ export default function EditForm({ fid, closeEvent }) {
     {
       value: "Female",
       label: "Female",
+    },
+    {
+      value: "Other",
+      label: "Other",
     },
   ];
   return (
@@ -155,6 +160,17 @@ export default function EditForm({ fid, closeEvent }) {
             size="small"
             onChange={handleLastNameChange}
             value={LastName}
+            sx={{ minWidth: "100%" }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            id="outlined-basic"
+            label="UHID"
+            variant="outlined"
+            size="small"
+            onChange={handleUhidChange}
+            value={Uhid}
             sx={{ minWidth: "100%" }}
           />
         </Grid>
@@ -255,17 +271,7 @@ export default function EditForm({ fid, closeEvent }) {
             sx={{ minWidth: "100%" }}
           />
         </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="outlined-basic"
-            label="Symptoms"
-            variant="outlined"
-            size="small"
-            onChange={handleSymptomsChange}
-            value={Symptoms}
-            sx={{ minWidth: "100%" }}
-          />
-        </Grid>
+        
         <Grid item xs={12}>
           <Typography variant="h5" align="center">
             <Button variant="contained" onClick={createUser}>
